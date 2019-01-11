@@ -1,23 +1,19 @@
 package com.udacity.ramanujam.popularmovies;
 
 import android.content.ContentResolver;
-//import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-//import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-//import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.udacity.ramanujam.popularmovies.data.MovieContract;
@@ -37,7 +33,6 @@ import java.util.ArrayList;
 
 public class PopularMoviesFragment extends Fragment {
     private static final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
-    //private PopularMoviesGridViewAdapter popularMoviesGridViewAdapter;
     private ArrayList<MovieItem> popularMoviesDataGrid;
     private GridView popularMoviesGridView;
     private String sortPreference;
@@ -72,7 +67,7 @@ public class PopularMoviesFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.popular_movies_list , container, false);
 
-        popularMoviesRecyclerView = (RecyclerView)rootView.findViewById(R.id.recyclerview_popular_movies_list);
+        popularMoviesRecyclerView = rootView.findViewById(R.id.recyclerview_popular_movies_list);
         popularMoviesRecyclerView.setHasFixedSize(true);
         popularMoviesDataGrid = new ArrayList<>();
         popularMoviesAdapter = new PopularMoviesAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
@@ -108,7 +103,8 @@ public class PopularMoviesFragment extends Fragment {
                     getString(R.string.pref_sortby_value));
 
             if(preferredUrl.equals(getString(R.string.pref_sort_myfavorites))) {
-                ContentResolver contentResolver = getActivity().getContentResolver();
+                ContentResolver contentResolver;
+                contentResolver = getActivity().getContentResolver();
 
                 if(contentResolver != null) {
                     Cursor cursor = contentResolver.query(MovieContract.MovieEntry.CONTENT_URI, null, null, null, null);
@@ -180,14 +176,6 @@ public class PopularMoviesFragment extends Fragment {
         @Override
         protected void onPostExecute(Integer result) {
             if(popularMoviesDataGrid.size() > 0) {
-
-                /*popularMoviesGridViewAdapter = new PopularMoviesGridViewAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
-
-                popularMoviesGridView.setAdapter(popularMoviesGridViewAdapter);
-                */
-
-                Log.i(LOG_TAG, "Reached here. GridSize is: " + popularMoviesDataGrid.size());
-
                 popularMoviesAdapter = new PopularMoviesAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
                 popularMoviesRecyclerView.setAdapter(popularMoviesAdapter);
                 popularMoviesAdapter.notifyDataSetChanged();
