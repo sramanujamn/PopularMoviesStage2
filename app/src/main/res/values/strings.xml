@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_sortby_label">Sort by</string>
+    <string name="pref_sortby_key">sorting</string>
+    <string name="pref_sortby_value">1</string>
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_movie_detail_activity">Movie Details</string>
+
+    <string name="pref_sort_label_popular">Most Popular</string>
+    <string name="pref_sort_label_toprated">Top Rated</string>
+    <string name="pref_sort_label_myfavorites">My Favorites</string>
+
+    <string name="pref_sort_popular">1</string>
+    <string name="pref_sort_toprated">2</string>
+    <string name="pref_sort_myfavorites">3</string>
+    
+    <string name="mark_favorite_btn_text">MARK AS FAVORITE</string>
+    <string name="trailers_title">Trailers</string>
+    <string name="reviews_title">Reviews</string>
+
+    <string name="desc_favoriteIconButton">Movie set as favorite. Click to remove from favorites.</string>
+    <string name="desc_movieImage">Movie Image</string>
+
+</resources>

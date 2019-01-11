@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="com.udacity.ramanujam.popularmovies.MovieItem" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fillViewport="false"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/horizontal_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"
+                tools:layout_editor_absoluteX="192dp"
+                tools:layout_editor_absoluteY="0dp"/>
+
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#ffffff"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Superman"
+                />
+
+            <ImageView
+                android:id="@+id/movieImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                app:layout_constraintRight_toLeftOf="@id/horizontal_middle"
+                tools:src="@drawable/superman"
+                android:contentDescription="@string/desc_movieImage"/>
+
+            <TextView
+                android:id="@+id/movieReleaseDate"
+                style="@style/AppTheme.Big"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                app:layout_constraintLeft_toRightOf="@id/movieImage"
+                app:layout_constraintLeft_toLeftOf="@id/horizontal_middle"
+                app:layout_constraintTop_toTopOf="@id/movieImage"
+                tools:text="1978"
+                />
+
+            <TextView
+                android:id="@+id/movieRating"
+                style="@style/AppTheme.Big"
+                app:layout_constraintTop_toBottomOf="@id/movieReleaseDate"
+                app:layout_constraintLeft_toLeftOf="@id/movieReleaseDate"
+                tools:text="7.5/10"/>
+
+            <TextView
+                android:id="@+id/movieSynopsis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/movieRating"
+                app:layout_constraintLeft_toRightOf="@id/movieImage"
+                app:layout_constraintStart_toStartOf="@id/movieRating"
+                app:layout_constraintTop_toBottomOf="@id/movieRating"
+                tools:text="Mild-mannered Clark Kent works as a reporter at the Daily Planet alongside his crush, Lois Lane. Clark must summon his superhero alter-ego when the nefarious Lex Luthor launches a plan to take over the world." />
+
+
+            <TextView
+                android:id="@+id/trailersTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@id/movieSynopsis"
+                app:layout_constraintLeft_toLeftOf="@id/movieSynopsis"
+                android:text="@string/trailers_title"
+                android:textSize="24sp"
+                />
+
+            <Button
+                android:id="@+id/saveFavoriteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mark_favorite_btn_text"
+                app:layout_constraintLeft_toRightOf="@id/movieReleaseDate"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle" />
+
+            <ImageButton
+                android:id="@+id/favouriteIconButton"
+                android:visibility="invisible"
+                style="@style/AppTheme.Big"
+                app:layout_constraintLeft_toRightOf="@id/movieReleaseDate"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                app:srcCompat="@drawable/ic_star_yellow_24dp"
+                android:contentDescription="@string/desc_favoriteIconButton"/>
+
+            <include
+                android:id="@+id/movie_trailers_list"
+                layout="@layout/movie_trailers_list"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@id/trailersTitle"
+                app:layout_constraintLeft_toLeftOf="@id/movieRating"/>
+
+            <TextView
+                android:id="@+id/reviewsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews_title"
+                android:textSize="24sp"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@id/movieImage"
+                app:layout_constraintLeft_toLeftOf="@id/movieImage"/>
+
+            <include
+                android:id="@+id/movie_reviews_list"
+                layout="@layout/movie_reviews_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@id/reviewsTitle"
+                app:layout_constraintLeft_toLeftOf="@id/reviewsTitle"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sortByKeys">
+        <item>@string/pref_sort_label_popular</item>
+        <item>@string/pref_sort_label_toprated</item>
+        <item>@string/pref_sort_label_myfavorites</item>
+    </string-array>
+
+    <string-array name="sortByValues">
+        <item>@string/pref_sort_popular</item>
+        <item>@string/pref_sort_toprated</item>
+        <item>@string/pref_sort_myfavorites</item>
+    </string-array>
+
+</resources>

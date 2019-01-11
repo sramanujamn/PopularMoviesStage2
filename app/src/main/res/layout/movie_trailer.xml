@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+    <ImageButton
+        android:id="@+id/trailerPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trailerDivider"
+        app:srcCompat="@drawable/ic_play_circle_outline_black_24dp"
+        />
+
+        <TextView
+            android:id="@+id/trailerName"
+            style="@style/AppTheme.VerticalLowMargin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/trailerPlay"
+            app:layout_constraintTop_toTopOf="@id/trailerPlay"
+            app:layout_constrainedWidth="true"
+            tools:text="Aquaman - Official Trailer 1 - Testins the line wrapping if it is working." />
+
+    <View
+        android:id="@+id/trailerDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryLight"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
