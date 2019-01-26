@@ -1,5 +1,6 @@
 package com.udacity.ramanujam.popularmovies.data;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -18,6 +19,9 @@ public class MovieTrailersAdapter extends RecyclerView.Adapter<MovieTrailersAdap
 
     private int listItemLayout;
     private ArrayList<MovieTrailer> movieTrailerArrayList;
+
+    public static String YOUTUBE_INTENT_BASEURL = "vnd.youtube:";
+    public static String WEB_INTENT_BASEURL = "http://www.youtube.com/watch?v=";
 
     public MovieTrailersAdapter(int layoutId, ArrayList<MovieTrailer> arrayList) {
         listItemLayout = layoutId;
@@ -41,8 +45,13 @@ public class MovieTrailersAdapter extends RecyclerView.Adapter<MovieTrailersAdap
             @Override
             public void onClick(View view) {
                 MovieTrailer trailer = movieTrailerArrayList.get(position);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + trailer.getKey()));
-                view.getContext().startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(YOUTUBE_INTENT_BASEURL + trailer.getKey()));
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(WEB_INTENT_BASEURL + trailer.getKey()));
+                try {
+                    view.getContext().startActivity(intent);
+                } catch(ActivityNotFoundException anfe) {
+                    view.getContext().startActivity(webIntent);
+                }
             }
         });
 

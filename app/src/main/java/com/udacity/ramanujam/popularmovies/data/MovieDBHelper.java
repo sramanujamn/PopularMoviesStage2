@@ -10,6 +10,10 @@ public class MovieDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 2;
 
+    private static final String DATABASE_ALTER_SQL_1 = "ALTER TABLE "
+            + MovieContract.MovieEntry.TABLE_NAME
+            + " ADD COLUMN " + MovieContract.MovieEntry.COLUMN_MOVIE_IMAGE + " BLOB;";
+
     public MovieDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -33,8 +37,9 @@ public class MovieDBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MovieContract.MovieEntry.TABLE_NAME);
-        onCreate(sqLiteDatabase);
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        if(oldVersion < 2) {
+            sqLiteDatabase.execSQL(DATABASE_ALTER_SQL_1);
+        }
     }
 }

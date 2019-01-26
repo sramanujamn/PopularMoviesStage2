@@ -85,4 +85,9 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
             movieTitle = (TextView)itemView.findViewById(R.id.movieGridItemTitle);
         }
     }
+
+    public void swapData(ArrayList popularMoviesArrayList) {
+        this.popularMoviesArrayList = popularMoviesArrayList;
+        notifyDataSetChanged();
+    }
 }

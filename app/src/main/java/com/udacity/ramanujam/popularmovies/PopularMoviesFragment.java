@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class PopularMoviesFragment extends Fragment {
     private static final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
     private ArrayList<MovieItem> popularMoviesDataGrid;
-    private GridView popularMoviesGridView;
+    //private GridView popularMoviesGridView;
     private String sortPreference;
     private SharedPreferences sharedPreferences;
 
@@ -66,15 +66,20 @@ public class PopularMoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.popular_movies_list , container, false);
-
         popularMoviesRecyclerView = rootView.findViewById(R.id.recyclerview_popular_movies_list);
         popularMoviesRecyclerView.setHasFixedSize(true);
-        popularMoviesDataGrid = new ArrayList<>();
-        popularMoviesAdapter = new PopularMoviesAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
 
-        popularMoviesRecyclerView.setAdapter(popularMoviesAdapter);
+        if(savedInstanceState == null) {
+            popularMoviesDataGrid = new ArrayList<>();
+            popularMoviesAdapter = new PopularMoviesAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
+            popularMoviesRecyclerView.setAdapter(popularMoviesAdapter);
+            updateMovies();
+        } else {
+            popularMoviesDataGrid = savedInstanceState.getParcelableArrayList("movielist");
+            popularMoviesAdapter = new PopularMoviesAdapter(getActivity(), R.layout.popular_movie, popularMoviesDataGrid);
+            popularMoviesRecyclerView.setAdapter(popularMoviesAdapter);
+        }
 
-        updateMovies();
         return rootView;
     }
 
@@ -250,4 +255,9 @@ public class PopularMoviesFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("movielist", popularMoviesDataGrid);
+    }
 }
